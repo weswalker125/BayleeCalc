@@ -101,7 +101,7 @@ public class Calculator extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Restingl Energy Expenditure");
+        jLabel6.setText("Resting Energy Expenditure");
 
         w_textbox_bee.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         w_textbox_bee.addActionListener(new java.awt.event.ActionListener() {
@@ -154,7 +154,7 @@ public class Calculator extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(w_textbox_bee, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

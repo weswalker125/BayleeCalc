@@ -63,7 +63,7 @@
                       <Component id="w_textbox_bee" min="-2" pref="106" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="54" max="32767" attributes="0"/>
+              <EmptySpace pref="56" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -191,7 +191,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Restingl Energy Expenditure"/>
+        <Property name="text" type="java.lang.String" value="Resting Energy Expenditure"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="w_textbox_bee">
