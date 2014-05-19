@@ -12,6 +12,12 @@ package bayleecalc;
  */
 public class Calculator extends javax.swing.JFrame {
 
+    public static class Range
+    {
+        public double low;
+        public double high;
+    }
+    
     /**
      * Creates new form Calculator
      */
@@ -57,6 +63,7 @@ public class Calculator extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         w_textbox_bmi = new javax.swing.JTextField();
+        w_label_correctness = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,7 +114,7 @@ public class Calculator extends javax.swing.JFrame {
 
         jLabel5.setText("Equation");
 
-        w_combobox_equation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Harris-Benedict", "Mifflin - St Jeor", "Ireton-Jones", "Institute of Medicine" }));
+        w_combobox_equation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Harris-Benedict", "Mifflin - St Jeor", "Ireton-Jones", "Institute of Medicine", "World Health Organization" }));
         w_combobox_equation.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 w_combobox_equationItemStateChanged(evt);
@@ -152,44 +159,50 @@ public class Calculator extends javax.swing.JFrame {
 
         w_textbox_bmi.setEditable(false);
 
+        w_label_correctness.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel7)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(21, 21, 21)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel8))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(w_combobox_equation, 0, 1, Short.MAX_VALUE)
-                                .addComponent(w_combobox_gender, 0, 109, Short.MAX_VALUE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(w_textbox_bmi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                                        .addComponent(w_textbox_weight, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(w_textbox_age, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(w_textbox_height, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(w_combobox_heightUnits, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(w_combobox_weightUnits, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(w_combobox_ageUnits, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(w_textbox_bee, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(w_label_correctness, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(w_textbox_bee, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
+                        .addContainerGap(56, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel8))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(w_combobox_equation, 0, 1, Short.MAX_VALUE)
+                                    .addComponent(w_combobox_gender, 0, 109, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(w_textbox_bmi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                                            .addComponent(w_textbox_weight, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(w_textbox_age, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(w_textbox_height, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(w_combobox_heightUnits, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(w_combobox_weightUnits, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(w_combobox_ageUnits, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                        .addGap(56, 56, 56))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +240,9 @@ public class Calculator extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(w_textbox_bee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(w_label_correctness, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -306,6 +321,7 @@ public class Calculator extends javax.swing.JFrame {
     {
         //Re-evaluate the B.E.E. 
         double bee = 0;
+        Calculator.Range correctnessRange;
         double age = 0;
         double height = 0; 
         double weight = 0;
@@ -326,7 +342,7 @@ public class Calculator extends javax.swing.JFrame {
                 height = InchesToCentimeters(height);
             
             //Calculate BMI (based on weight and height only)
-            bmi = GetBMI(weight, height);
+                bmi = GetBMI(weight, height);
             bmi = (double)Math.round(bmi * 100) / 100;
             w_textbox_bmi.setText(Double.toString(bmi));
             
@@ -357,17 +373,36 @@ public class Calculator extends javax.swing.JFrame {
             {
                 bee = Institute(male, age, height, weight, 1);
             }
+            else if(equation.contains("World Health Organization"))
+            {
+                bee = WHO(male, weight);
+            }
             
             //round to 3 decimal places
             bee = (double)Math.round(bee * 1000) / 1000;
-
+            correctnessRange = ErrorRange(bee, 10);
             //display the bee
             w_textbox_bee.setText(Double.toString(bee));
+            //display the range of acceptable results
+            w_label_correctness.setText("(" + Double.toString(correctnessRange.low) + " - " + Double.toString(correctnessRange.high) + ")");
         }
         catch(NumberFormatException e)
         {
             
         }
+    }
+    
+    
+    
+    private static Calculator.Range ErrorRange(double number, double percent)
+    {
+        Calculator.Range ret = new Calculator.Range();
+        double difference;
+        
+        difference = number * (percent/100);
+        ret.low = (double)Math.round((number - difference) * 1000) / 1000;
+        ret.high = (double)Math.round((number + difference) * 1000) / 1000;
+        return ret;
     }
     
     /**
@@ -460,6 +495,20 @@ public class Calculator extends javax.swing.JFrame {
         return ret;
     }
     
+    private static double WHO(boolean male, double weight)
+    {
+        double ret = 0;
+        
+        if(male) {
+            ret = (15.057*weight) + 692.2;
+        }
+        else {
+            ret = (14.818*weight) + 486.6;
+        }
+        
+        return ret;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -474,6 +523,7 @@ public class Calculator extends javax.swing.JFrame {
     private javax.swing.JComboBox w_combobox_gender;
     private javax.swing.JComboBox w_combobox_heightUnits;
     private javax.swing.JComboBox w_combobox_weightUnits;
+    private javax.swing.JLabel w_label_correctness;
     private javax.swing.JTextField w_textbox_age;
     private javax.swing.JTextField w_textbox_bee;
     private javax.swing.JTextField w_textbox_bmi;
