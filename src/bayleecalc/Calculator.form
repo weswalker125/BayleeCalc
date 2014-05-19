@@ -36,12 +36,16 @@
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="w_combobox_equation" alignment="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="w_combobox_gender" alignment="0" pref="109" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="w_textbox_weight" alignment="0" pref="59" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="w_textbox_bmi" alignment="0" pref="59" max="32767" attributes="0"/>
+                                      <Component id="w_textbox_weight" alignment="0" max="32767" attributes="0"/>
                                       <Component id="w_textbox_age" alignment="0" max="32767" attributes="0"/>
                                       <Component id="w_textbox_height" alignment="0" max="32767" attributes="0"/>
                                   </Group>
@@ -52,8 +56,6 @@
                                       <Component id="w_combobox_ageUnits" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="w_combobox_equation" alignment="0" pref="109" max="32767" attributes="0"/>
-                              <Component id="w_combobox_gender" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -100,12 +102,17 @@
                   <Component id="w_textbox_age" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="w_combobox_ageUnits" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="w_textbox_bmi" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="w_textbox_bee" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="52" max="32767" attributes="0"/>
+              <EmptySpace pref="49" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -179,9 +186,11 @@
     <Component class="javax.swing.JComboBox" name="w_combobox_equation">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
+          <StringArray count="4">
             <StringItem index="0" value="Harris-Benedict"/>
             <StringItem index="1" value="Mifflin - St Jeor"/>
+            <StringItem index="2" value="Ireton-Jones"/>
+            <StringItem index="3" value="Institute of Medicine"/>
           </StringArray>
         </Property>
       </Properties>
@@ -213,6 +222,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="w_combobox_heightUnitsItemStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="w_combobox_weightUnits">
       <Properties>
@@ -223,6 +235,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="w_combobox_weightUnitsItemStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="w_combobox_ageUnits">
       <Properties>
@@ -233,6 +248,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="w_combobox_ageUnitsItemStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
@@ -240,6 +258,17 @@
           <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Resting Energy Expenditure"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel8">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="BMI"/>
+        <Property name="focusCycleRoot" type="boolean" value="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="w_textbox_bmi">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
   </SubComponents>

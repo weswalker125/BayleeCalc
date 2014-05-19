@@ -17,6 +17,17 @@ public class Calculator extends javax.swing.JFrame {
      */
     public Calculator() {
         initComponents();
+        //HideBMI();
+    }
+    
+    private void HideBMI() {
+        jLabel8.setVisible(false);
+        w_textbox_bmi.setVisible(false);
+    }
+    
+    private void ShowBMI() {
+        jLabel8.setVisible(true);
+        w_textbox_bmi.setVisible(true);
     }
 
     /**
@@ -44,6 +55,8 @@ public class Calculator extends javax.swing.JFrame {
         w_combobox_weightUnits = new javax.swing.JComboBox();
         w_combobox_ageUnits = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        w_textbox_bmi = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,7 +107,7 @@ public class Calculator extends javax.swing.JFrame {
 
         jLabel5.setText("Equation");
 
-        w_combobox_equation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Harris-Benedict", "Mifflin - St Jeor" }));
+        w_combobox_equation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Harris-Benedict", "Mifflin - St Jeor", "Ireton-Jones", "Institute of Medicine" }));
         w_combobox_equation.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 w_combobox_equationItemStateChanged(evt);
@@ -111,13 +124,33 @@ public class Calculator extends javax.swing.JFrame {
         });
 
         w_combobox_heightUnits.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "cm", "in" }));
+        w_combobox_heightUnits.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                w_combobox_heightUnitsItemStateChanged(evt);
+            }
+        });
 
         w_combobox_weightUnits.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "kg", "lb" }));
+        w_combobox_weightUnits.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                w_combobox_weightUnitsItemStateChanged(evt);
+            }
+        });
 
         w_combobox_ageUnits.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "yrs", "mos" }));
+        w_combobox_ageUnits.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                w_combobox_ageUnitsItemStateChanged(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Resting Energy Expenditure");
+
+        jLabel8.setText("BMI");
+        jLabel8.setFocusCycleRoot(true);
+
+        w_textbox_bmi.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,21 +168,23 @@ public class Calculator extends javax.swing.JFrame {
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel3)
                                 .addComponent(jLabel2)
-                                .addComponent(jLabel5))
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel8))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(w_combobox_equation, 0, 1, Short.MAX_VALUE)
+                                .addComponent(w_combobox_gender, 0, 109, Short.MAX_VALUE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(w_textbox_weight, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                                        .addComponent(w_textbox_age)
-                                        .addComponent(w_textbox_height, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(w_textbox_bmi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                                        .addComponent(w_textbox_weight, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(w_textbox_age, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(w_textbox_height, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(w_combobox_heightUnits, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(w_combobox_weightUnits, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(w_combobox_ageUnits, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addComponent(w_combobox_equation, 0, 109, Short.MAX_VALUE)
-                                .addComponent(w_combobox_gender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addComponent(w_combobox_ageUnits, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -184,11 +219,15 @@ public class Calculator extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(w_textbox_age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(w_combobox_ageUnits, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(w_textbox_bmi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(w_textbox_bee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
@@ -230,6 +269,18 @@ public class Calculator extends javax.swing.JFrame {
         Recalculate();
     }//GEN-LAST:event_w_combobox_equationItemStateChanged
 
+    private void w_combobox_ageUnitsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_w_combobox_ageUnitsItemStateChanged
+        Recalculate();
+    }//GEN-LAST:event_w_combobox_ageUnitsItemStateChanged
+
+    private void w_combobox_weightUnitsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_w_combobox_weightUnitsItemStateChanged
+        Recalculate();
+    }//GEN-LAST:event_w_combobox_weightUnitsItemStateChanged
+
+    private void w_combobox_heightUnitsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_w_combobox_heightUnitsItemStateChanged
+        Recalculate();
+    }//GEN-LAST:event_w_combobox_heightUnitsItemStateChanged
+
     private double InchesToCentimeters(double inches) {
         return (double) (inches * (double)2.54);
     }
@@ -242,39 +293,73 @@ public class Calculator extends javax.swing.JFrame {
         return (double) (pounds * (double).453592);
     }
     
+    ///weight in KG, Height in cm
+    private double GetBMI(double weight, double height) {
+        double ret = 0;
+        height = height / 100;
+        ret = (double) (weight / (double)(height * height));
+        
+        return ret;
+    }
+    
     private void Recalculate()
     {
         //Re-evaluate the B.E.E. 
         double bee = 0;
         double age = 0;
-        double height=0; 
+        double height = 0; 
         double weight = 0;
         boolean male = false;
+        double bmi = 0;
+        String equation;
         
         try
         {
+            //Get weight from text fields
             weight = Integer.parseInt(w_textbox_weight.getText());
-            height = Integer.parseInt(w_textbox_height.getText());
-            age = Integer.parseInt(w_textbox_age.getText());
-            
-            if(w_combobox_ageUnits.getSelectedItem().toString().contains("mos"))
-                age = MonthsToYears(age);
-            if(w_combobox_heightUnits.getSelectedItem().toString().contains("in"))
-                height = InchesToCentimeters(height);
             if(w_combobox_weightUnits.getSelectedItem().toString().contains("lb"))
                 weight = PoundsToKilograms(weight);
-        
+            
+            //Get height from text fields
+            height = Integer.parseInt(w_textbox_height.getText());
+            if(w_combobox_heightUnits.getSelectedItem().toString().contains("in"))
+                height = InchesToCentimeters(height);
+            
+            //Calculate BMI (based on weight and height only)
+            bmi = GetBMI(weight, height);
+            bmi = (double)Math.round(bmi * 100) / 100;
+            w_textbox_bmi.setText(Double.toString(bmi));
+            
+            //Get age from text fields
+            age = Integer.parseInt(w_textbox_age.getText());
+            if(w_combobox_ageUnits.getSelectedItem().toString().contains("mos"))
+                age = MonthsToYears(age);
+            
+            //Get gender from combobox
             if(w_combobox_gender.getSelectedItem().toString().contains("Male"))
                 male = true;
-
-            if(w_combobox_equation.getSelectedItem().toString().contains("Harris"))
+                        
+            //Calculate energy expenditure
+            equation = w_combobox_equation.getSelectedItem().toString();
+            if(equation.contains("Harris"))
             {
                 bee = Harris(male, age, height, weight);   
             }
-            else
+            else if(equation.contains("Mifflin"))
             {
                 bee = Mifflin(male, age, height, weight);
             }
+            else if(equation.contains("Ireton"))
+            {
+                bee = Ireton(male, age, weight, false);
+            }
+            else if(equation.contains("Institute"))
+            {
+                bee = Institute(male, age, height, weight, 1);
+            }
+            
+            //round to 3 decimal places
+            bee = (double)Math.round(bee * 1000) / 1000;
 
             //display the bee
             w_textbox_bee.setText(Double.toString(bee));
@@ -320,6 +405,7 @@ public class Calculator extends javax.swing.JFrame {
         });
     }
     
+    ///age in years, height in cm, weight in kg
     private static double Harris(boolean male, double age, double height, double weight) {
         double ret = 0;
         
@@ -333,6 +419,7 @@ public class Calculator extends javax.swing.JFrame {
         return ret;
     }
     
+    ///age in years, height in cm, weight in kg
     private static double Mifflin(boolean male, double age, double height, double weight) {
         double ret = 0;
         
@@ -346,6 +433,33 @@ public class Calculator extends javax.swing.JFrame {
         return ret;
     }
     
+    ///age in years, weight in kg
+    private static double Ireton(boolean male, double age, double weight, boolean ventilator) {
+        double ret = 0;
+        
+        ret = (9*weight) - (12*age) + 1444;
+        if(male)
+            ret += 606;
+        if(ventilator)
+            ret += 400;
+        
+        return ret;
+    }
+    
+    ///age in years, height in cm, weight in kg
+    private static double Institute(boolean male, double age, double height, double weight, double activity) {
+        double ret = 0;
+        
+        if(male) {
+            ret = 662 - (9.53*age) + (activity*15.91*weight) + (539.6*height/100);
+        }
+        else {
+            ret = 354 - (6.91*age) + (activity*9.36*weight) + (726*height/100);
+        }
+        
+        return ret;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -354,6 +468,7 @@ public class Calculator extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JComboBox w_combobox_ageUnits;
     private javax.swing.JComboBox w_combobox_equation;
     private javax.swing.JComboBox w_combobox_gender;
@@ -361,6 +476,7 @@ public class Calculator extends javax.swing.JFrame {
     private javax.swing.JComboBox w_combobox_weightUnits;
     private javax.swing.JTextField w_textbox_age;
     private javax.swing.JTextField w_textbox_bee;
+    private javax.swing.JTextField w_textbox_bmi;
     private javax.swing.JTextField w_textbox_height;
     private javax.swing.JTextField w_textbox_weight;
     // End of variables declaration//GEN-END:variables
