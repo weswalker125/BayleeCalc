@@ -194,12 +194,13 @@
     <Component class="javax.swing.JComboBox" name="w_combobox_equation">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
+          <StringArray count="6">
             <StringItem index="0" value="Harris-Benedict"/>
             <StringItem index="1" value="Mifflin - St Jeor"/>
             <StringItem index="2" value="Ireton-Jones"/>
             <StringItem index="3" value="Institute of Medicine"/>
-            <StringItem index="4" value="World Health Organization"/>
+            <StringItem index="4" value="World Health Organization (weight only)"/>
+            <StringItem index="5" value="World Health Organization"/>
           </StringArray>
         </Property>
       </Properties>

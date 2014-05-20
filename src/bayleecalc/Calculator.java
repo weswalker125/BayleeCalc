@@ -114,7 +114,7 @@ public class Calculator extends javax.swing.JFrame {
 
         jLabel5.setText("Equation");
 
-        w_combobox_equation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Harris-Benedict", "Mifflin - St Jeor", "Ireton-Jones", "Institute of Medicine", "World Health Organization" }));
+        w_combobox_equation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Harris-Benedict", "Mifflin - St Jeor", "Ireton-Jones", "Institute of Medicine", "World Health Organization (weight only)", "World Health Organization" }));
         w_combobox_equation.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 w_combobox_equationItemStateChanged(evt);
@@ -331,13 +331,13 @@ public class Calculator extends javax.swing.JFrame {
         
         try
         {
-            //Get weight from text fields
-            weight = Integer.parseInt(w_textbox_weight.getText());
+            //Get weight from text fields            
+            weight = Double.parseDouble(w_textbox_weight.getText());
             if(w_combobox_weightUnits.getSelectedItem().toString().contains("lb"))
                 weight = PoundsToKilograms(weight);
             
             //Get height from text fields
-            height = Integer.parseInt(w_textbox_height.getText());
+            height = Double.parseDouble(w_textbox_height.getText());
             if(w_combobox_heightUnits.getSelectedItem().toString().contains("in"))
                 height = InchesToCentimeters(height);
             
@@ -347,7 +347,7 @@ public class Calculator extends javax.swing.JFrame {
             w_textbox_bmi.setText(Double.toString(bmi));
             
             //Get age from text fields
-            age = Integer.parseInt(w_textbox_age.getText());
+            age = Double.parseDouble(w_textbox_age.getText());
             if(w_combobox_ageUnits.getSelectedItem().toString().contains("mos"))
                 age = MonthsToYears(age);
             
@@ -357,25 +357,33 @@ public class Calculator extends javax.swing.JFrame {
                         
             //Calculate energy expenditure
             equation = w_combobox_equation.getSelectedItem().toString();
-            if(equation.contains("Harris"))
+            if(equation.equalsIgnoreCase("Harris-Benedict"))
             {
                 bee = Harris(male, age, height, weight);   
             }
-            else if(equation.contains("Mifflin"))
+            else if(equation.equalsIgnoreCase("Mifflin - St Jeor"))
             {
                 bee = Mifflin(male, age, height, weight);
             }
-            else if(equation.contains("Ireton"))
+            else if(equation.equalsIgnoreCase("Ireton-Jones"))
             {
                 bee = Ireton(male, age, weight, false);
             }
-            else if(equation.contains("Institute"))
+            else if(equation.equalsIgnoreCase("Institute of Medicine"))
             {
                 bee = Institute(male, age, height, weight, 1);
             }
-            else if(equation.contains("World Health Organization"))
+            else if(equation.equalsIgnoreCase("World Health Organization (weight only)"))
             {
-                bee = WHO(male, weight);
+                bee = WHO_weightOnly(male, age, weight);
+            }
+            else if(equation.equalsIgnoreCase("World Health Organization"))
+            {
+                bee = WHO(male, age, height, weight);
+            }
+            else if(equation.equalsIgnoreCase("Owen"))
+            {
+                bee = Owen(male, weight);
             }
             
             //round to 3 decimal places
@@ -495,15 +503,64 @@ public class Calculator extends javax.swing.JFrame {
         return ret;
     }
     
-    private static double WHO(boolean male, double weight)
+    private static double WHO_weightOnly(boolean male, double age, double weight)
     {
         double ret = 0;
         
         if(male) {
-            ret = (15.057*weight) + 692.2;
+            if(age >= 18 && age <= 30)
+                ret = (15.3*weight) + 679;
+            else if (age >=31 && age <= 60)
+                ret = (11.6*weight) + 879;
+            else if(age > 60)
+                ret = (13.5*weight) + 487;
         }
         else {
-            ret = (14.818*weight) + 486.6;
+            if(age >= 18 && age <= 30)
+                ret = (14.7*weight) + 496;
+            else if (age >=31 && age <= 60)
+                ret = (8.7*weight) + 829;
+            else if(age > 60)
+                ret = (10.5*weight) + 596;
+        }
+        
+        return ret;
+    }
+    
+    private static double WHO(boolean male, double age, double height, double weight)
+    {
+        double ret = 0;
+        height = height / 100;
+        
+        if(male) {
+            if(age >= 18 && age <= 30)
+                ret = (15.4*weight) - (27*height) + 717;
+            else if (age >=31 && age <= 60)
+                ret = (11.3*weight) + (16*height) + 901;
+            else if(age > 60)
+                ret = (8.8*weight) + (1128*height) - 1071;
+        }
+        else {
+            if(age >= 18 && age <= 30)
+                ret = (13.3*weight) + (334*height) + 35;
+            else if (age >=31 && age <= 60)
+                ret = (8.7*weight) - (25*height) + 865;
+            else if(age > 60)
+                ret = (9.2*weight) + (637*height) - 302;
+        }
+        
+        return ret;
+    }
+    
+    private static double Owen(boolean male, double weight)
+    {
+        double ret = 0;
+        
+        if(male) {
+            ret = 879 + (10.2*weight);
+        }
+        else {
+            ret = 795 + (7.18*weight);
         }
         
         return ret;
