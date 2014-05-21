@@ -24,22 +24,13 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="w_label_correctness" max="32767" attributes="0"/>
-                          <Component id="w_textbox_bee" pref="106" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="56" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
+                  <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -51,27 +42,40 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="w_combobox_equation" alignment="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="w_combobox_gender" alignment="0" pref="109" max="32767" attributes="0"/>
+                                  <Component id="w_combobox_gender" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="w_textbox_bmi" alignment="0" pref="59" max="32767" attributes="0"/>
+                                          <Component id="w_textbox_bmi" alignment="0" max="32767" attributes="0"/>
                                           <Component id="w_textbox_weight" alignment="0" max="32767" attributes="0"/>
                                           <Component id="w_textbox_age" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="w_textbox_height" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="w_textbox_height" alignment="0" min="-2" pref="59" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="w_combobox_heightUnits" alignment="0" max="32767" attributes="0"/>
                                           <Component id="w_combobox_weightUnits" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="w_combobox_ageUnits" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="w_combobox_ageUnits" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="w_button_compare" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="w_label_correctness" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="w_textbox_bee" min="-2" pref="106" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -119,8 +123,11 @@
                   <Component id="w_textbox_bee" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="w_label_correctness" min="-2" pref="20" max="-2" attributes="0"/>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="w_label_correctness" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="w_button_compare" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -210,7 +217,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Resting Energy Expenditure"/>
+        <Property name="text" type="java.lang.String" value="REE"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="w_textbox_bee">
@@ -285,6 +292,14 @@
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="w_button_compare">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Compare"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="w_button_compareActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
